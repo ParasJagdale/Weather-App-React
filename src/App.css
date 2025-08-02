@@ -1,0 +1,380 @@
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+}
+
+/* Enhanced Dynamic Theming with smoother gradients */
+.weather-root.theme-hot {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fecfef 75%, #ff9a9e 100%);
+  background-size: 400% 400%;
+  animation: bgHot 12s ease-in-out infinite;
+  color: #2c3e50;
+}
+
+.weather-root.theme-cold {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 25%, #d299c2 75%, #fef9d7 100%);
+  background-size: 400% 400%;
+  animation: bgCold 15s ease-in-out infinite;
+  color: #2c3e50;
+}
+
+.weather-root.theme-mild {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 25%, #ffecd2 75%, #fcb69f 100%);
+  background-size: 400% 400%;
+  animation: bgMild 10s ease-in-out infinite;
+  color: #2c3e50;
+}
+
+.weather-root.theme-night {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 25%, #2c3e50 75%, #34495e 100%);
+  background-size: 400% 400%;
+  animation: bgNight 8s ease-in-out infinite;
+  color: #ecf0f1;
+}
+
+/* Enhanced keyframe animations with smoother transitions */
+@keyframes bgHot {
+  0% { background-position: 0% 50%; filter: brightness(1) saturate(1.1); }
+  25% { background-position: 100% 50%; filter: brightness(1.1) saturate(1.2); }
+  50% { background-position: 100% 100%; filter: brightness(1.05) saturate(1.15); }
+  75% { background-position: 0% 100%; filter: brightness(1.1) saturate(1.2); }
+  100% { background-position: 0% 50%; filter: brightness(1) saturate(1.1); }
+}
+
+@keyframes bgCold {
+  0% { background-position: 100% 0%; filter: brightness(1.1) saturate(1.1); }
+  25% { background-position: 0% 50%; filter: brightness(1.15) saturate(1.2); }
+  50% { background-position: 100% 100%; filter: brightness(1.05) saturate(1.15); }
+  75% { background-position: 50% 0%; filter: brightness(1.1) saturate(1.1); }
+  100% { background-position: 100% 0%; filter: brightness(1.1) saturate(1.1); }
+}
+
+@keyframes bgMild {
+  0% { background-position: 0% 0%; filter: brightness(1.05) saturate(1.1); }
+  33% { background-position: 100% 50%; filter: brightness(1.1) saturate(1.15); }
+  66% { background-position: 0% 100%; filter: brightness(1.08) saturate(1.12); }
+  100% { background-position: 0% 0%; filter: brightness(1.05) saturate(1.1); }
+}
+@keyframes bgNight {
+  0% { background-position: 0% 100%; filter: brightness(0.9) saturate(1.1); }
+  25% { background-position: 50% 0%; filter: brightness(1) saturate(1.15); }
+  50% { background-position: 100% 50%; filter: brightness(0.95) saturate(1.12); }
+  75% { background-position: 50% 100%; filter: brightness(1) saturate(1.1); }
+  100% { background-position: 0% 100%; filter: brightness(0.9) saturate(1.1); }
+}
+
+/* Enhanced Glassmorphism Card with better depth */
+.card {
+  background: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border-radius: 24px !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+  animation: floatCard 4s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.8s;
+}
+
+.card:hover::before {
+  left: 100%;
+}
+
+@keyframes floatCard {
+  0% { 
+    transform: translateY(0px) rotateX(0deg); 
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  }
+  100% { 
+    transform: translateY(-15px) rotateX(2deg); 
+    box-shadow: 0 20px 50px 0 rgba(31, 38, 135, 0.3);
+  }
+}
+
+.card:hover, .card:active {
+  transform: scale(1.06) translateY(-12px) rotateX(5deg);
+  box-shadow: 
+    0 25px 60px 0 rgba(31, 38, 135, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Responsive Card */
+@media (max-width: 600px) {
+  .card {
+    max-width: 95vw !important;
+    min-width: 0 !important;
+    padding: 0.5rem !important;
+  }
+}
+
+/* Enhanced Thermometer and Temp Animation */
+.thermometer {
+  width: 20px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin: 0 auto 1.5rem auto;
+  position: relative;
+  box-shadow: 
+    0 4px 15px rgba(0,0,0,0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.thermometer::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent, rgba(255, 255, 255, 0.2));
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.thermometer-cold {
+  background: rgba(131, 164, 212, 0.3);
+  border-color: rgba(131, 164, 212, 0.5);
+}
+.thermometer-mild {
+  background: rgba(168, 237, 234, 0.3);
+  border-color: rgba(168, 237, 234, 0.5);
+}
+.thermometer-night {
+  background: rgba(52, 73, 94, 0.3);
+  border-color: rgba(52, 73, 94, 0.5);
+}
+
+.thermometer-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 8px;
+  animation: pulseTemp 2s infinite alternate;
+  transition: height 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes pulseTemp {
+  0% { 
+    filter: brightness(1) saturate(1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+  100% { 
+    filter: brightness(1.3) saturate(1.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Enhanced Temperature Text with better typography */
+.temp-text {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: tempGlow 2s infinite alternate;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  letter-spacing: -1px;
+  margin: 0.5rem 0;
+}
+
+.temp-text-cold {
+  background: linear-gradient(135deg, #83a4d4, #b6fbff);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.temp-text-mild {
+  background: linear-gradient(135deg, #a8edea, #fed6e3);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.temp-text-night {
+  background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes tempGlow {
+  0% { 
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    transform: scale(1);
+  }
+  100% { 
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    transform: scale(1.02);
+  }
+}
+
+/* Enhanced Button and Interactive Elements */
+button, .MuiButton-root {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover, .MuiButton-root:hover, button:active, .MuiButton-root:active {
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 94, 98, 0.25);
+}
+
+/* Enhanced Typography for main title */
+.weather-root h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 2rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  letter-spacing: -1px;
+  animation: titleFloat 3s ease-in-out infinite alternate;
+}
+
+.weather-root.theme-night h1 {
+  background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes titleFloat {
+  0% { 
+    transform: translateY(0px);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+  100% { 
+    transform: translateY(-5px);
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+  }
+}
+
+/* Enhanced responsive root with better spacing */
+.weather-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem 1rem 3rem 1rem;
+  position: relative;
+  overflow-x: hidden;
+  transition: all 0.8s ease-in-out;
+}
+
+.weather-root.transitioning {
+  filter: blur(2px);
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+/* Smooth transitions for info container */
+.info-container {
+  transition: all 0.4s ease-in-out;
+}
+
+.info-container.fade-out {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.info-container.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  animation: slideUpFadeIn 0.6s ease-out;
+}
+
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Weather data hover effects */
+.MuiTypography-root p {
+  transition: all 0.3s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+}
+
+.MuiTypography-root p:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Enhanced responsive design */
+@media (max-width: 768px) {
+  .weather-root {
+    padding: 1rem 0.5rem 2rem 0.5rem;
+  }
+  
+  .weather-root h1 {
+    font-size: 2.2rem;
+    margin: 1rem 0;
+  }
+  
+  .temp-text {
+    font-size: 2.2rem;
+  }
+  
+  .thermometer {
+    width: 16px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .weather-root h1 {
+    font-size: 1.8rem;
+  }
+  
+  .temp-text {
+    font-size: 1.8rem;
+  }
+  
+  .card {
+    margin: 0 0.5rem;
+  }
+}

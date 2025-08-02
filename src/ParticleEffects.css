@@ -1,0 +1,235 @@
+/* Particle Effects Styles */
+.particle-effects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Rain Effects */
+.rain-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.raindrop {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(173, 216, 230, 0.8), rgba(173, 216, 230, 0.3));
+  border-radius: 1px;
+  animation: fall linear infinite;
+}
+
+.raindrop.theme-night {
+  background: linear-gradient(to bottom, rgba(135, 206, 250, 0.6), rgba(135, 206, 250, 0.2));
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100vh) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+/* Snow Effects */
+.snow-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.snowflake {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.8);
+  user-select: none;
+  pointer-events: none;
+  animation: snowfall linear infinite;
+}
+
+.snowflake.theme-cold {
+  color: rgba(240, 248, 255, 0.9);
+  text-shadow: 0 0 5px rgba(173, 216, 230, 0.5);
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Sun Effects */
+.sun-container {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: 100px;
+  height: 100px;
+}
+
+.sun-ray {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 60px;
+  background: linear-gradient(to top, rgba(255, 215, 0, 0), rgba(255, 215, 0, 0.8));
+  transform-origin: bottom;
+  animation: sunRayPulse 3s ease-in-out infinite alternate;
+}
+
+.sun-ray.theme-hot {
+  background: linear-gradient(to top, rgba(255, 140, 0, 0), rgba(255, 140, 0, 0.9));
+}
+
+.sun-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: sunGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes sunRayPulse {
+  0% { 
+    opacity: 0.6;
+    height: 60px;
+  }
+  100% { 
+    opacity: 1;
+    height: 80px;
+  }
+}
+
+@keyframes sunGlow {
+  0% { 
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  100% { 
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.6;
+  }
+}
+
+/* Cloud Effects */
+.cloud-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.cloud {
+  position: absolute;
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.6);
+  animation: cloudFloat linear infinite;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.cloud.theme-mild {
+  color: rgba(255, 182, 193, 0.7);
+}
+
+.cloud.theme-night {
+  color: rgba(105, 105, 105, 0.8);
+}
+
+@keyframes cloudFloat {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  10%, 90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px));
+    opacity: 0;
+  }
+}
+
+/* Fog Effects */
+.fog-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.fog-layer {
+  position: absolute;
+  width: 120%;
+  height: 100px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 25%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    rgba(255, 255, 255, 0.2) 75%, 
+    transparent 100%);
+  animation: fogMove 20s ease-in-out infinite alternate;
+}
+
+.fog-layer:nth-child(1) { bottom: 60%; }
+.fog-layer:nth-child(2) { bottom: 50%; }
+.fog-layer:nth-child(3) { bottom: 40%; }
+.fog-layer:nth-child(4) { bottom: 30%; }
+.fog-layer:nth-child(5) { bottom: 20%; }
+.fog-layer:nth-child(6) { bottom: 10%; }
+
+.fog-layer.theme-night {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(169, 169, 169, 0.2) 25%, 
+    rgba(169, 169, 169, 0.3) 50%, 
+    rgba(169, 169, 169, 0.2) 75%, 
+    transparent 100%);
+}
+
+@keyframes fogMove {
+  0% {
+    transform: translateX(-20%);
+  }
+  100% {
+    transform: translateX(20%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sun-container {
+    width: 60px;
+    height: 60px;
+    top: 5%;
+    right: 10%;
+  }
+  
+  .sun-ray {
+    height: 40px;
+  }
+  
+  .cloud {
+    font-size: 2rem;
+  }
+  
+  .snowflake {
+    font-size: 0.8rem;
+  }
+}

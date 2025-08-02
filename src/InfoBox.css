@@ -1,0 +1,135 @@
+/* Enhanced glassmorphism and centering */
+.InfoBox {
+    text-align: center;
+    margin-top: 2rem;
+    animation: slideUpFade 0.8s ease-out;
+}
+
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    perspective: 1000px;
+}
+
+/* Enhanced animated weather icons */
+.animated-weather-icon {
+    display: inline-block;
+    animation: fadeInIcon 1.2s ease-out;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-left: 0.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.animated-weather-icon:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.rain-icon {
+    animation: fadeInIcon 1.2s ease-out, rainBounce 2s ease-in-out infinite;
+}
+
+.sun-icon {
+    animation: fadeInIcon 1.2s ease-out, sunRotate 8s linear infinite;
+}
+
+.snow-icon {
+    animation: fadeInIcon 1.2s ease-out, snowFloat 3s ease-in-out infinite alternate;
+}
+
+.cloud-icon {
+    animation: fadeInIcon 1.2s ease-out, cloudSway 4s ease-in-out infinite alternate;
+}
+
+.mild-icon {
+    animation: fadeInIcon 1.2s ease-out, mildGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes fadeInIcon {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.5) rotate(-180deg); 
+    }
+    50% {
+        transform: scale(1.1) rotate(-90deg);
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1) rotate(0deg); 
+    }
+}
+
+@keyframes rainBounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes sunRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes snowFloat {
+    0% { 
+        transform: translateY(0px) rotate(0deg); 
+        filter: drop-shadow(0 2px 4px rgba(135, 206, 250, 0.3));
+    }
+    100% { 
+        transform: translateY(-5px) rotate(10deg); 
+        filter: drop-shadow(0 4px 8px rgba(135, 206, 250, 0.5));
+    }
+}
+
+@keyframes cloudSway {
+    0% { 
+        transform: translateX(0px); 
+        opacity: 0.8;
+    }
+    100% { 
+        transform: translateX(3px); 
+        opacity: 1;
+    }
+}
+
+@keyframes mildGlow {
+    0% { 
+        filter: drop-shadow(0 2px 4px rgba(255, 230, 92, 0.3)); 
+    }
+    100% { 
+        filter: drop-shadow(0 4px 8px rgba(255, 230, 92, 0.6)); 
+    }
+}
+
+/* Enhanced card interactions */
+.card {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.card:hover {
+    transform: scale(1.05) translateY(-10px) rotateX(5deg) !important;
+    box-shadow: 0 20px 60px 0 rgba(31, 38, 135, 0.3) !important;
+}
+
+/* Responsive enhancements */
+@media (max-width: 768px) {
+    .animated-weather-icon {
+        margin-left: 0.25rem;
+    }
+    
+    .InfoBox {
+        margin-top: 1rem;
+    }
+}
